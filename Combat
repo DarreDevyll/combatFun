@@ -1,0 +1,120 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <fstream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+
+	int attack, health, patk, ehp;
+	string action;
+	action = "youllneverknow";
+	health = 100;
+	patk = 0;
+	ehp = 100;
+	srand((unsigned int)time(0));
+
+	while (action != "leafmealone" && ehp != 0)
+	{
+
+		attack = (rand() % 33) + 1;
+		if (attack >= 0 && attack <= 4)
+		{
+			cout << "Attacking from lower left";
+		}
+		else if (attack >= 5 && attack <= 9)
+		{
+			cout << "Attacking from left";
+		}
+		else if (attack >= 10 && attack <= 14)
+		{
+			cout << "Attacking from upper left";
+		}
+		else if (attack >= 15 && attack <= 19)
+		{
+			cout << "Attacking from above";
+		}
+		else if (attack >= 20 && attack <= 24)
+		{
+			cout << "Attacking from upper right";
+		}
+		else if (attack >= 25 && attack <= 29)
+		{
+			cout << "Attacking from right";
+		}
+		else if (attack >= 30 && attack <= 33)
+		{
+			cout << "Attacking from lower right";
+		}
+		cout << "\nHow will you defend?: ";
+		cin >> action;
+
+		if ((action == "LL" || action == "ll" || action == "Ll" || action == "lL") && (attack == 1 || attack == 2 || attack == 3 || attack == 5 || attack == 6))
+		{
+			cout << "You successfully defended to the lower left\n\n";
+			patk = patk + 1;
+		}
+		else if ((action == "L" || action == "l") && (attack == 3 || attack == 4 || attack == 6 || attack == 7 || attack == 8 || attack == 10 || attack == 11))
+		{
+			cout << "You successfully defended to the left\n\n";
+			patk = patk + 1;
+		}
+		else if ((action == "UL" || action == "ul" || action == "Ul" || action == "uL") && (attack == 8 || attack == 9 || attack == 11 || attack == 12 || attack == 13 || attack == 15 || attack == 16))
+		{
+			cout << "You successfully defended to the upper left\n\n";
+			patk = patk + 1;
+		}
+		else if ((action == "U" || action == "u") && (attack == 13 || attack == 14 || attack == 16 || attack == 17 || attack == 18 || attack == 20 || attack == 21))
+		{
+			cout << "You successfully defended from above\n\n";
+			patk = patk + 1;
+		}
+		else if ((action == "UR" || action == "ur" || action == "Ur" || action == "uR") && (attack == 18 || attack == 19 || attack == 21 || attack == 22 || attack == 23 || attack == 25 || attack == 26))
+		{
+			cout << "You successfully defended to the upper right\n\n";
+			patk = patk + 1;
+		}
+		else if ((action == "R" || action == "r") && (attack == 23 || attack == 24 || attack == 26 || attack == 27 || attack == 28 || attack == 30 || attack == 31))
+		{
+			cout << "You successfully defended to the right\n\n";
+			patk = patk + 1;
+		}
+		else if ((action == "LR" || action == "lr" || action == "Lr" || action == "lR") && (attack == 28 || attack == 29 || attack == 31 || attack == 32 || attack == 33))
+		{
+			cout << "You successfully defended to the lower right\n\n";
+			patk = patk + 1;
+		}
+		else
+		{
+			cout << "You failed...\n";
+			health = health - 1;
+			cout << "You have " << health << " HP left\n";
+		}
+
+		if (patk == 3)
+		{
+			cout << "He's stunned... Now is your chance!\n: ";
+			patk = patk - 3;
+			cin >> action;
+			if (action == "atk")
+			{
+				ehp = ehp - 5;
+				cout << "You did 5 damage. He now has " << ehp << " health left. You got this!\n";
+			}
+			else
+			{
+				cout << "He is alert again. You missed your chance.\n";
+			}
+
+		}
+
+
+	}
+
+	cout << "\n\nWell done. You beat the game. Thanks for playing!\n";
+
+	return 0;
+}
